@@ -1,11 +1,12 @@
-:root{
-	--blue: #70A6E8;
-  --orange: #F8964C;
-  --green: #22A447;
-  --yellow: #FFC145;
-	--light-gray: #ECECEC;
-  --gray: #AEAEAE;
+:root {
+  /* colors */
+  --white: #ffffff;
+  --light-gray: #ececec;
+  --gray: #aeaeae;
   --dark-gray: #404040;
 
-	--background: #ffffff;
+  --blue: #70a6e8;
+  --orange: #f8964c;
+  --green: #22a447;
+  --yellow: #ffc145;
 }
