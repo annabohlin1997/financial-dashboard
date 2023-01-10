@@ -2,8 +2,8 @@ const Transactions = ({ transactions }) => {
   return (
     <div>
       <ul>
-        {transactions.map((transaction) => (
-          <li>
+        {transactions.map((transaction, i) => (
+          <li key={i}>
             {transaction.name} {transaction.date} {transaction.category} $
             {transaction.amount}
           </li>

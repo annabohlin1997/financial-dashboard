@@ -5,8 +5,8 @@ import Goal from "./Goal";
 const GoalsWrapper = ({ goals }) => {
   return (
     <div className="goals-wrapper">
-      {goals.map((goal) => (
-        <Goal goal={goal} />
+      {goals.map((goal, i) => (
+        <Goal key={i} goal={goal} />
       ))}
     </div>
   );

@@ -4,8 +4,10 @@ const Goal = ({ goal }) => {
   return (
     <div className="goal card-look">
       <p>{goal.date}</p>
-      <p>{goal.name}</p>
-      <p>{goal.amount}</p>
+      <p>
+        <strong>{goal.name}</strong>
+      </p>
+      <p>${goal.amount}</p>
     </div>
   );
 };

@@ -1,4 +1,10 @@
-.moduleWrapper {
+.module-wrapper {
   border-radius: 1rem;
   margin: 1rem;
+  padding: 2rem;
+}
+
+.module-wrapper-title {
+  font-size: 1.25rem;
+  font-weight: 700;
 }

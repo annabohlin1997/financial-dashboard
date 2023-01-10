@@ -1,12 +1,11 @@
 import "../styles/ModuleWrapper.css";
 
 const ModuleWrapper = ({ title, showBackground, children }) => {
-  const className = `moduleWrapper ${showBackground && "card-look"}`;
+  const className = `module-wrapper ${showBackground && "card-look"}`;
 
   return (
     <div className={className}>
-      <h2>{title}</h2>
-      <p>Show background: {showBackground.toString()}</p>
+      <h2 className="module-wrapper-title">{title}</h2>
       {children}
     </div>
   );
