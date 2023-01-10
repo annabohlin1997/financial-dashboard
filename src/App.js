@@ -1,39 +1,43 @@
 import { useState } from "react";
 import "./App.css";
-import CardWrapper from "./components/CardWrapper";
+import Cards from "./components/Cards";
+import Module from "./components/Module";
+import SpendingStatistics from "./components/SpendingStatistics";
+import Transactions from "./components/Transactions";
 
 // ——————
 // Dummy data:
 const dummyTransactions = [
   {
-    date: "2022-12-25",
-    name: "Salary",
-    amount: 2000,
-    category: "income",
-  },
-  {
-    date: "2022-12-29",
-    name: "H&M",
-    amount: 112.14,
-    category: "shopping",
-  },
-  {
-    date: "2022-12-30",
-    name: "Systembolaget",
-    amount: 95.96,
-    category: "food",
+    date: "2023-01-01",
+    name: "Uber",
+    amount: -23.2,
+    category: "transportation",
   },
   {
     date: "2023-01-01",
     name: "Max",
-    amount: 16.23,
+    amount: -16.23,
     category: "food",
   },
   {
-    date: "2023-01-01",
-    name: "Uber",
-    amount: 23.2,
-    category: "transport",
+    date: "2022-12-30",
+    name: "Systembolaget",
+    amount: -95.96,
+    category: "food",
+  },
+  {
+    date: "2022-12-29",
+    name: "H&M",
+    amount: -112.14,
+    category: "shopping",
+  },
+
+  {
+    date: "2022-12-25",
+    name: "Salary",
+    amount: 2000,
+    category: "income",
   },
 ];
 
@@ -58,11 +62,22 @@ const dummyGoals = [
 
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
+
+  //Should live in the goals component
   const [goals, setGoals] = useState(dummyGoals);
 
   return (
     <div className="App">
-      <CardWrapper />
+      <Module title="Cards">
+        <Cards transactions={transactions} />
+      </Module>
+      <Module title="Transactions">
+        <Transactions transactions={transactions} />
+      </Module>
+      <Module title="Goals" showBackground={false}></Module>
+      <Module title="Spending Statistics" showBackground={false}>
+        <SpendingStatistics transactions={transactions} />
+      </Module>
     </div>
   );
 }
