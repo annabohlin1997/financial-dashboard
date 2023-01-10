@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Cards from "./components/Cards";
-import Module from "./components/Module";
+import GoalsWrapper from "./components/GoalsWrapper";
+import ModuleWrapper from "./components/ModuleWrapper";
 import SpendingStatistics from "./components/SpendingStatistics";
 import Transactions from "./components/Transactions";
 
@@ -63,21 +64,53 @@ const dummyGoals = [
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
 
-  //Should live in the goals component
+  //Should (maybe?!) live in the goals component
   const [goals, setGoals] = useState(dummyGoals);
 
   return (
     <div className="App">
-      <Module title="Cards">
+      <ModuleWrapper title="Cards">
         <Cards transactions={transactions} />
-      </Module>
-      <Module title="Transactions">
+      </ModuleWrapper>
+      <ModuleWrapper title="Transactions">
         <Transactions transactions={transactions} />
-      </Module>
-      <Module title="Goals" showBackground={false}></Module>
-      <Module title="Spending Statistics" showBackground={false}>
+      </ModuleWrapper>
+      <ModuleWrapper title="Goals" showBackground={false}>
+        <GoalsWrapper goals={goals} />
+      </ModuleWrapper>
+      <ModuleWrapper title="Spending Statistics" showBackground={false}>
         <SpendingStatistics transactions={transactions} />
-      </Module>
+      </ModuleWrapper>
+      <h1>DEBUG</h1>
+      <button
+        onClick={() =>
+          setTransactions([
+            ...transactions,
+            {
+              date: "2023-01-01",
+              name: "Uber",
+              amount: -23.2,
+              category: "transportation",
+            },
+          ])
+        }
+      >
+        Add transaction
+      </button>
+      <button
+        onClick={() =>
+          setGoals([
+            ...goals,
+            {
+              date: "2023-04-01",
+              name: "MacBook Pro",
+              amount: 2500,
+            },
+          ])
+        }
+      >
+        Add goal
+      </button>
     </div>
   );
 }

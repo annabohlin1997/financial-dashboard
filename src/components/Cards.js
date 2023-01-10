@@ -8,9 +8,11 @@ const Cards = ({ transactions }) => {
     .filter((transaction) => transaction.amount > 0)
     .reduce((sum, transaction) => sum + transaction.amount, 0);
 
-  const expenses = transactions
-    .filter((transaction) => transaction.amount > 0)
-    .reduce((sum, transaction) => sum + transaction.amount, 0);
+  const expenses = Math.abs(
+    transactions
+      .filter((transaction) => transaction.amount < 0)
+      .reduce((sum, transaction) => sum + transaction.amount, 0)
+  );
 
   return (
     <div>
