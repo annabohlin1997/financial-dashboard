@@ -11,7 +11,7 @@ const dummyTransactions = [
   {
     date: "2023-01-01",
     name: "Uber",
-    amount: -23.2,
+    amount: -32.2,
     category: "transportation",
   },
   {
@@ -23,7 +23,7 @@ const dummyTransactions = [
   {
     date: "2022-12-30",
     name: "Systembolaget",
-    amount: -95.96,
+    amount: -65.96,
     category: "food",
   },
   {
