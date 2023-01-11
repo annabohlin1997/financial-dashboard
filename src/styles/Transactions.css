@@ -2,8 +2,9 @@
 	display: grid;
 	grid-template-columns: 40px repeat(3, 1fr) 50px;
  border-top: 1px solid var(--color-light-gray);
- padding-top: 10px;
- padding-bottom: 10px;
+ padding-top: 0.625rem;
+ padding-bottom: 0.625rem;
+ font-size: 0.875rem;
 }
 
 .transactions-amount {
@@ -19,7 +20,7 @@
 .transactions-icon {
 	width:20px;
 	height:20px;
-	padding:4px;
+	padding:0.25rem;
 	background-color: var(--color-light-gray);
 	border-radius: 6px;
 	display: flex;
