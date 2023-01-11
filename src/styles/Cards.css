@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.cards-card {
+.cards-card-container {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -11,7 +11,15 @@
   height: 100%;
 }
 
-.cards-statistics {
+.cards-card-card {
+  transition: all 500ms ease;
+}
+
+.cards-card-card--inactive {
+  filter: grayscale(100) blur(10px);
+}
+
+.cards-statistics-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -29,9 +37,9 @@
 
 .cards-statistics-number {
   text-align: end;
-  display: inline-block;
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: 0.75rem;
 }
 
 .cards-statistics-number--big {
