@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import AddGoal from "./components/AddGoal";
 import Cards from "./components/Cards";
 import GoalsWrapper from "./components/GoalsWrapper";
 import ModuleWrapper from "./components/ModuleWrapper";
@@ -72,6 +73,17 @@ function App() {
   //Should (maybe?!) live in the goals component
   const [goals, setGoals] = useState(dummyGoals);
 
+  const addGoal = ({ name, date, amount }) => {
+    setGoals([
+      ...goals,
+      {
+        name,
+        date,
+        amount,
+      },
+    ]);
+  };
+
   return (
     <div className="App">
       <img src="logo.svg" alt="Cloudcash cloud logo"></img>
@@ -87,6 +99,9 @@ function App() {
         <div>
           <ModuleWrapper title="Goals" showBackground={false}>
             <GoalsWrapper goals={goals} />
+          </ModuleWrapper>
+          <ModuleWrapper title="Add goal (temp)">
+            <AddGoal addGoalCb={addGoal} />
           </ModuleWrapper>
           <ModuleWrapper title="Spending Statistics" showBackground={false}>
             <SpendingStatistics transactions={transactions} />
