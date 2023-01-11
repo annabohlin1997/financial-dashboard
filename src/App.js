@@ -43,6 +43,7 @@ const dummyTransactions = [
     name: "Salary",
     amount: 2000,
     category: "income",
+    icon: "salary-gray",
   },
 ];
 
