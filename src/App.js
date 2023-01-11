@@ -14,24 +14,28 @@ const dummyTransactions = [
     name: "Uber",
     amount: -32.2,
     category: "transportation",
+    icon: "travel-gray",
   },
   {
     date: "2023-01-01",
     name: "Max",
     amount: -16.23,
     category: "food",
+    icon: "food-gray",
   },
   {
     date: "2022-12-30",
     name: "Systembolaget",
     amount: -65.96,
     category: "food",
+    icon: "food-gray",
   },
   {
     date: "2022-12-29",
     name: "H&M",
     amount: -112.14,
     category: "shopping",
+    icon: "shopping-gray",
   },
 
   {
@@ -69,6 +73,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src="logo.svg" alt="Cloudcash cloud logo"></img>
       <ModuleWrapper title="Cards">
         <Cards transactions={transactions} />
       </ModuleWrapper>
