@@ -4,7 +4,7 @@ const Transactions = ({ transactions }) => {
       <ul>
         {transactions.map((transaction, i) => (
           <li key={i}>
-            {transaction.name} {transaction.date} {transaction.category} $
+            <img src={transaction.icon + ".svg"} alt="" /> {transaction.name} {transaction.date} {transaction.category} $
             {transaction.amount}
           </li>
         ))}
