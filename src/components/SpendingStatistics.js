@@ -27,28 +27,50 @@ const SpendingStatistics = ({ transactions }) => {
     <div className="statistics-wrapper">
       <img className="statistics-green" src="food-colored.svg" alt="" />
       <div className="statistics-main">
-        <div className="statistics-bar" style={{ backgroundColor: "#22a447", width: `${foodRatio * 100}%` }}>
-        .
+        <div className="statistics-bar-bg">
+          <div
+            className="statistics-bar-fill"
+            style={{
+              backgroundColor: "var(--color-green)",
+              width: `${foodRatio * 100}%`,
+            }}
+          />
         </div>
         <p>Food</p>
       </div>
       <p className="statistics-percentage">{Math.floor(foodRatio * 100)}%</p>
       <img className="statistics-orange" src="shopping-colored.svg" alt="" />
       <div className="statistics-main">
-        <div className="statistics-bar" style={{ backgroundColor: "#f8964c", width: `${shoppingRatio * 100}%` }}>
-          .
+        <div className="statistics-bar-bg">
+          <div
+            className="statistics-bar-fill"
+            style={{
+              backgroundColor: "var(--color-orange)",
+              width: `${shoppingRatio * 100}%`,
+            }}
+          />
         </div>
         <p>Shopping</p>
       </div>
-      <p className="statistics-percentage">{Math.floor(shoppingRatio * 100)}%</p>
+      <p className="statistics-percentage">
+        {Math.floor(shoppingRatio * 100)}%
+      </p>
       <img className="statistics-blue" src="travel-colored.svg" alt="" />
       <div className="statistics-main">
-        <div className="statistics-bar" style={{ backgroundColor: "#70a6e8", width: `${transportationRatio * 100}%`,}}>
-          .
+        <div className="statistics-bar-bg">
+          <div
+            className="statistics-bar-fill"
+            style={{
+              backgroundColor: "var(--color-blue)",
+              width: `${transportationRatio * 100}%`,
+            }}
+          />
         </div>
         <p>Transportation</p>
       </div>
-      <p className="statistics-percentage">{Math.floor(transportationRatio * 100)}%</p>
+      <p className="statistics-percentage">
+        {Math.floor(transportationRatio * 100)}%
+      </p>
     </div>
   );
 };
