@@ -1,0 +1,24 @@
+.transactions-list {
+	display: grid;
+	grid-template-columns: 40px repeat(3, 1fr) 50px;
+
+}
+
+.transactions-amount {
+	display: grid;
+	justify-self: end;
+}
+
+.transactions-light-gray {
+	color: var(--color-gray);
+}
+
+.transactions-icon {
+	width:20px;
+	height:20px;
+	padding:4px;
+	background-color: var(--color-light-gray);
+	border-radius: 6px;
+	display: flex;
+	align-self: center;
+}

@@ -13,32 +13,37 @@ const dummyTransactions = [
     date: "2023-01-01",
     name: "Uber",
     amount: -32.2,
-    category: "transportation",
+    category: "Transportation",
+    icon: "travel-gray",
   },
   {
     date: "2023-01-01",
     name: "Max",
     amount: -16.23,
-    category: "food",
+    category: "Food",
+    icon: "food-gray",
   },
   {
     date: "2022-12-30",
     name: "Systembolaget",
     amount: -65.96,
-    category: "food",
+    category: "Food",
+    icon: "food-gray",
   },
   {
     date: "2022-12-29",
     name: "H&M",
     amount: -112.14,
-    category: "shopping",
+    category: "Shopping",
+    icon: "shopping-gray",
   },
 
   {
     date: "2022-12-25",
     name: "Salary",
     amount: 2000,
-    category: "income",
+    category: "Income",
+    icon: "salary",
   },
 ];
 
@@ -69,6 +74,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src="logo.svg" alt="Cloudcash cloud logo"></img>
       <div className="columns">
         <div>
           <ModuleWrapper title="Cards">
