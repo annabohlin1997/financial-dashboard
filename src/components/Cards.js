@@ -34,9 +34,9 @@ const Cards = ({ transactions }) => {
             className="cards-statistics-number"
             style={{ color: "var(--color-ui-primary)" }}
           >
-            ${" "}
+            $&nbsp;
             <span className="cards-statistics-number--big">
-              {currentBalance}
+              {Math.floor(currentBalance)}
             </span>
           </p>
           <p className="cards-statistics-label">Current balance</p>
@@ -46,7 +46,7 @@ const Cards = ({ transactions }) => {
             className="cards-statistics-number"
             style={{ color: "var(--color-ui-success)" }}
           >
-            $ {income}
+            $&nbsp;{Math.floor(income)}
           </p>
           <p className="cards-statistics-label">Income</p>
         </div>
@@ -55,7 +55,7 @@ const Cards = ({ transactions }) => {
             className="cards-statistics-number"
             style={{ color: "var(--color-ui-warning)" }}
           >
-            $ {expenses}
+            $&nbsp;{Math.floor(expenses)}
           </p>
           <p className="cards-statistics-label">Expenses</p>
         </div>

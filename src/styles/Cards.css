@@ -28,6 +28,8 @@
 }
 
 .cards-statistics-number {
+  text-align: end;
+  display: inline-block;
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -38,6 +40,7 @@
 }
 
 .cards-statistics-label {
+  text-align: end;
   font-size: 0.875rem;
   color: var(--color-gray);
 }
