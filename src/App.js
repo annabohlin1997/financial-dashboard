@@ -3,6 +3,7 @@ import "./App.css";
 import AddGoal from "./components/AddGoal";
 import Cards from "./components/Cards";
 import GoalsWrapper from "./components/GoalsWrapper";
+import ModalWrapper from "./components/ModalWrapper";
 import ModuleWrapper from "./components/ModuleWrapper";
 import SpendingStatistics from "./components/SpendingStatistics";
 import Transactions from "./components/Transactions";
@@ -69,9 +70,11 @@ const dummyGoals = [
 
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
-
-  //Should (maybe?!) live in the goals component
   const [goals, setGoals] = useState(dummyGoals);
+  const [addGoalsVisible, setAddGoalsVisible] = useState(false);
+
+  const showAddGoals = () => setAddGoalsVisible(true);
+  const hideAddGoals = () => setAddGoalsVisible(false);
 
   const addGoal = ({ name, date, amount }) => {
     setGoals([
@@ -85,60 +88,57 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <img src="logo.svg" alt="Cloudcash cloud logo"></img>
-      <div className="columns">
-        <div>
-          <ModuleWrapper title="Cards">
-            <Cards transactions={transactions} />
-          </ModuleWrapper>
-          <ModuleWrapper title="Transactions">
-            <Transactions transactions={transactions} />
-          </ModuleWrapper>
+    <>
+      <div className="App">
+        <img src="logo.svg" alt="Cloudcash cloud logo"></img>
+        <div className="columns">
+          <div>
+            <ModuleWrapper title="Cards">
+              <Cards transactions={transactions} />
+            </ModuleWrapper>
+            <ModuleWrapper title="Transactions">
+              <Transactions transactions={transactions} />
+            </ModuleWrapper>
+          </div>
+          <div>
+            <ModuleWrapper
+              title="Goals"
+              showBackground={false}
+              titleChildren={<button onClick={showAddGoals}>Add Goal</button>}
+            >
+              <GoalsWrapper goals={goals} />
+            </ModuleWrapper>
+            <ModuleWrapper title="Spending Statistics" showBackground={false}>
+              <SpendingStatistics transactions={transactions} />
+            </ModuleWrapper>
+          </div>{" "}
         </div>
-        <div>
-          <ModuleWrapper title="Goals" showBackground={false}>
-            <GoalsWrapper goals={goals} />
-          </ModuleWrapper>
-          <ModuleWrapper title="Add goal (temp)">
-            <AddGoal addGoalCb={addGoal} />
-          </ModuleWrapper>
-          <ModuleWrapper title="Spending Statistics" showBackground={false}>
-            <SpendingStatistics transactions={transactions} />
-          </ModuleWrapper>
-        </div>{" "}
+
+        <h1>DEBUG</h1>
+        <button
+          onClick={() =>
+            setTransactions([
+              ...transactions,
+              {
+                date: "2023-01-01",
+                name: "Uber",
+                amount: -23.2,
+                category: "transportation",
+              },
+            ])
+          }
+        >
+          Add transaction
+        </button>
       </div>
-      <h1>DEBUG</h1>
-      <button
-        onClick={() =>
-          setTransactions([
-            ...transactions,
-            {
-              date: "2023-01-01",
-              name: "Uber",
-              amount: -23.2,
-              category: "transportation",
-            },
-          ])
-        }
-      >
-        Add transaction
-      </button>
-      <button
-        onClick={() =>
-          setGoals([
-            ...goals,
-            {
-              date: "2023-04-01",
-              name: "MacBook Pro",
-              amount: 2500,
-            },
-          ])
-        }
-      >
-        Add goal
-      </button>
-    </div>
+      {addGoalsVisible && (
+        <ModalWrapper closeCb={hideAddGoals}>
+          <ModuleWrapper title="Add goal (temp)">
+            <AddGoal addGoalCb={addGoal} closeCb={hideAddGoals} />
+          </ModuleWrapper>
+        </ModalWrapper>
+      )}
+    </>
   );
 }
 

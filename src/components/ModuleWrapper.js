@@ -1,11 +1,19 @@
 import "../styles/ModuleWrapper.css";
 
-const ModuleWrapper = ({ title, showBackground, children }) => {
+const ModuleWrapper = ({ title, titleChildren, showBackground, children }) => {
   const className = `module-wrapper ${showBackground && "card-look"}`;
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className={className}>
-      <h2 className="module-wrapper-title">{title}</h2>
+    <div className={className} onClick={handleClick}>
+      <div className="module-wrapper-header">
+        <h2 className="module-wrapper-header-title">{title}</h2>
+        {titleChildren}
+        {/* <button>Add Goal</button> */}
+      </div>
       {children}
     </div>
   );

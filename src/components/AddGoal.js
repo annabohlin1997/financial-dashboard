@@ -1,19 +1,20 @@
 import { useState } from "react";
 import "../styles/AddGoal.css";
 
-const AddGoal = ({ addGoalCb }) => {
+const AddGoal = ({ addGoalCb, closeCb }) => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     addGoalCb({ name, date, amount });
+    closeCb();
+  };
 
-    setName("");
-    setDate("");
-    setAmount("");
+  const onClose = (e) => {
+    e.preventDefault();
+    closeCb();
   };
 
   return (
@@ -44,6 +45,7 @@ const AddGoal = ({ addGoalCb }) => {
           onChange={(e) => setAmount(e.target.value)}
         />
         <input type="submit" value="Save Goal" />
+        <button onClick={onClose}>Cancel</button>
       </form>
     </div>
   );
