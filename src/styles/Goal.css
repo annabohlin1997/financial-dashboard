@@ -5,4 +5,47 @@
   gap: 1rem;
   border-radius: 1rem;
   margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 24px;
+
+  width: 241.67px;
+  height: 176px;
+}
+
+.goalTop {
+  position: relative;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.goalAmount {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.goalDate {
+  font-size: 10px;
+}
+
+.goalName {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: capitalize;
+  /*  position: relative;
+  display: flex;
+  justify-content: end;*/
+}
+
+.goalTop .goalName {
+  position: relative;
+  display: flex;
+  justify-content: end;
 }

@@ -5,3 +5,9 @@
   border-radius: 1rem;
   margin: 1rem;
 }
+
+.btn-goals {
+  background-color: #ffc145;
+  border-radius: 50px;
+  border: 0;
+}

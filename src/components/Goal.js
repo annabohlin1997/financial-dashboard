@@ -3,11 +3,17 @@ import "../styles/Goal.css";
 const Goal = ({ goal }) => {
   return (
     <div className="goal card-look">
-      <p>{goal.date}</p>
+      <div className="cardTop">
+        <div className="goalAmount">
+          <strong><p>${goal.amount}</p></strong>
+        </div>
+        <div className="goalDate">
+          <p>{goal.date}</p>
+        </div>
+      </div>
       <p>
-        <strong>{goal.name}</strong>
+      <div className="goalName">{goal.name}</div>
       </p>
-      <p>${goal.amount}</p>
     </div>
   );
 };
