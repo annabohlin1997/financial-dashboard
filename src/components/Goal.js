@@ -14,7 +14,7 @@ const Goal = ({ goal }) => {
       </div>
       <div className="cardEnd">
       <div className="goalIcon" >
-      <img src={goal.icon + ".svg"} alt="" /></div>
+      <img src="goal.svg" alt="" /></div>
       <div className="goalName">
         <p>{goal.name}</p>
       </div>
