@@ -17,7 +17,6 @@ const Transactions = ({ transactions }) => {
 
   const newItemsTotalCount =
     transactions.length - prevTransactions.current.length;
-  console.log("new", newItemsTotalCount);
 
   let newItemsCounter = 0;
 

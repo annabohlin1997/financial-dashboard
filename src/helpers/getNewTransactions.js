@@ -38,7 +38,6 @@ const getNewTransactions = async (transactions) => {
       )}`;
     });
 
-  console.log(monthsWithSalary);
   const numberOfTransactions = Math.floor(
     randomInRange(minNumberOfTransactions, maxNumberOfTransactions)
   );
