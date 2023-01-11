@@ -6,13 +6,22 @@ const Transactions = ({ transactions }) => {
       <ul>
         {transactions.map((transaction, i) => (
           <li className="transactions-list" key={i}>
-            <div className="transactions-icon" >
-            <img src={transaction.icon + ".svg"} alt="" /> 
+            <div className="transactions-icon">
+              <img src={transaction.icon + ".svg"} alt="" />
             </div>
-            <p>{transaction.name}</p> 
-            <p className="transactions-light-gray">{transaction.date}</p> 
-            <p className="transactions-light-gray">{transaction.category}</p> 
-            <p className="transactions-amount">{transaction.amount > 0 ? `$${transaction.amount}` : `-$${Math.abs(transaction.amount)}`}</p>
+            <p>{transaction.name}</p>
+            <p className="transactions-light-gray">{transaction.date}</p>
+            <p
+              className="transactions-light-gray"
+              style={{ textTransform: "capitalize" }}
+            >
+              {transaction.category}
+            </p>
+            <p className="transactions-amount">
+              {transaction.amount > 0
+                ? `$${transaction.amount}`
+                : `-$${Math.abs(transaction.amount)}`}
+            </p>
           </li>
         ))}
       </ul>
