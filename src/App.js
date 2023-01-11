@@ -69,18 +69,24 @@ function App() {
 
   return (
     <div className="App">
-      <ModuleWrapper title="Cards">
-        <Cards transactions={transactions} />
-      </ModuleWrapper>
-      <ModuleWrapper title="Transactions">
-        <Transactions transactions={transactions} />
-      </ModuleWrapper>
-      <ModuleWrapper title="Goals" showBackground={false}>
-        <GoalsWrapper goals={goals} />
-      </ModuleWrapper>
-      <ModuleWrapper title="Spending Statistics" showBackground={false}>
-        <SpendingStatistics transactions={transactions} />
-      </ModuleWrapper>
+      <div className="columns">
+        <div>
+          <ModuleWrapper title="Cards">
+            <Cards transactions={transactions} />
+          </ModuleWrapper>
+          <ModuleWrapper title="Transactions">
+            <Transactions transactions={transactions} />
+          </ModuleWrapper>
+        </div>
+        <div>
+          <ModuleWrapper title="Goals" showBackground={false}>
+            <GoalsWrapper goals={goals} />
+          </ModuleWrapper>
+          <ModuleWrapper title="Spending Statistics" showBackground={false}>
+            <SpendingStatistics transactions={transactions} />
+          </ModuleWrapper>
+        </div>{" "}
+      </div>
       <h1>DEBUG</h1>
       <button
         onClick={() =>
