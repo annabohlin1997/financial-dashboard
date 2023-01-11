@@ -26,6 +26,7 @@ const getNewTransactions = async (transactions) => {
   };
 
   let lastDate = new Date(transactions[0].date);
+  const lastId = transactions[0].id;
 
   const monthsWithSalary = transactions
     .filter((transaction) => transaction.name === "Salary")
@@ -44,7 +45,7 @@ const getNewTransactions = async (transactions) => {
 
   const newTransactions = [];
 
-  //loop
+  //loop to create the new transactions
   for (let i = 0; i < numberOfTransactions; i++) {
     lastDate.setDate(lastDate.getDate() + Math.floor(Math.random() * 2));
 
@@ -84,7 +85,13 @@ const getNewTransactions = async (transactions) => {
       lastDate.getMonth() + 1
     }`.padStart(2, "0")}-${`${lastDate.getDate()}`.padStart(2, "0")}`;
 
-    newTransactions.unshift({ name, category, amount, date });
+    newTransactions.unshift({
+      id: lastId + i + 1,
+      name,
+      category,
+      amount,
+      date,
+    });
   }
 
   await asyncTimeout(Math.floor(randomInRange(500, 1500)));
