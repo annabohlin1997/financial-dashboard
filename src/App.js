@@ -16,28 +16,24 @@ const dummyTransactions = [
     name: "Uber",
     amount: -32.2,
     category: "transportation",
-    icon: "travel-gray",
   },
   {
     date: "2023-01-01",
     name: "Max",
     amount: -16.23,
     category: "food",
-    icon: "food-gray",
   },
   {
     date: "2022-12-30",
     name: "Systembolaget",
     amount: -65.96,
     category: "food",
-    icon: "food-gray",
   },
   {
     date: "2022-12-29",
     name: "H&M",
     amount: -112.14,
     category: "shopping",
-    icon: "shopping-gray",
   },
 
   {
@@ -45,7 +41,6 @@ const dummyTransactions = [
     name: "Salary",
     amount: 2000,
     category: "income",
-    icon: "salary",
   },
 ];
 
@@ -87,6 +82,51 @@ function App() {
     ]);
   };
 
+  const addRandomTransactions = () => {
+    //settings
+    const minNumberOfTransactions = 1;
+    const maxNumberOfTransactions = 8;
+    const minAmount = 0.45;
+    const maxAmount = 300;
+
+    const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    const spendingCategories = ["transportation", "food", "shopping"];
+
+    const spendingNames = {
+      transportation: ["Uber", "SL"],
+      food: ["Max", "Roots", "Hemköp"],
+      shopping: ["H&M", "Addnature"],
+    };
+
+    let lastDate = new Date(transactions[0].date);
+
+    const numberOfTransactions = Math.floor(
+      Math.random() * (maxNumberOfTransactions - minNumberOfTransactions) +
+        minNumberOfTransactions
+    );
+
+    const newTransactions = [];
+
+    //loop!
+    for (let i = 0; i < numberOfTransactions; i++) {
+      lastDate.setDate(lastDate.getDate() + 1);
+
+      const category = randomItem(spendingCategories);
+      const name = randomItem(spendingNames[category]);
+      const amount = -Math.abs(
+        Math.round(
+          (Math.random() * (maxAmount - minAmount) + minAmount) * 100
+        ) / 100
+      );
+      const date = `${lastDate.getFullYear()}-${lastDate.getMonth()}-${lastDate.getDate()}`;
+
+      newTransactions.unshift({ name, category, amount, date });
+    }
+
+    setTransactions([...newTransactions, ...transactions]);
+  };
+
   return (
     <>
       <div className="App">
@@ -96,7 +136,12 @@ function App() {
             <ModuleWrapper title="Cards">
               <Cards transactions={transactions} />
             </ModuleWrapper>
-            <ModuleWrapper title="Transactions">
+            <ModuleWrapper
+              title="Transactions"
+              titleChildren={
+                <button onClick={addRandomTransactions}>"Sync"</button>
+              }
+            >
               <Transactions transactions={transactions} />
             </ModuleWrapper>
           </div>
