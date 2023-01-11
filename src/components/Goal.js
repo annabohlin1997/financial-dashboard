@@ -1,5 +1,6 @@
 import "../styles/Goal.css";
 
+
 const Goal = ({ goal }) => {
   return (
     <div className="goal card-look">
@@ -11,9 +12,13 @@ const Goal = ({ goal }) => {
           <p>{goal.date}</p>
         </div>
       </div>
-      <p>
-      <div className="goalName">{goal.name}</div>
-      </p>
+      <div className="cardEnd">
+      <div className="goalIcon" >
+      <img src={goal.icon + ".svg"} alt="" /></div>
+      <div className="goalName">
+        <p>{goal.name}</p>
+      </div>
+    </div>
     </div>
   );
 };

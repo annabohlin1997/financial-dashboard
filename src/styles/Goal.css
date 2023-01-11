@@ -5,13 +5,11 @@
   gap: 1rem;
   border-radius: 1rem;
   margin: 1rem;
-  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  /*align-items: flex-start;*/
   padding: 16px 24px;
-
-  width: 241.67px;
   height: 176px;
+  width: fit-content;
 }
 
 .goalTop {
@@ -30,13 +28,14 @@
 
 .goalDate {
   font-size: 10px;
+  color: var(--color-gray);
 }
 
 .goalName {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
   text-transform: capitalize;
   /*  position: relative;
@@ -45,7 +44,21 @@
 }
 
 .goalTop .goalName {
-  position: relative;
+  /* position: relative; */
   display: flex;
   justify-content: end;
+}
+
+.goalEnd {
+  display: flex;
+  flex-direction: row;
+}
+
+.goalIcon {
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  background-color: var(--color-light-gray);
+  border-radius: 6px;
+  /*align-self: center;*/
 }

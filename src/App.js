@@ -54,16 +54,19 @@ const dummyGoals = [
     date: "2023-04-01",
     name: "MacBook Pro",
     amount: 2500,
+    icon: "goal",
   },
   {
     date: "2023-06-02",
     name: "Taormina",
     amount: 5000,
+    icon: "goal",
   },
   {
     date: "2025-01-01",
     name: "House",
     amount: 2000000,
+    icon: "goal",
   },
 ];
 // ——————
