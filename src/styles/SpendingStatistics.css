@@ -1,0 +1,58 @@
+.statistics-wrapper {
+ display: grid;
+ grid-template-columns: 1fr 500px 1fr;
+}
+
+
+.statistics-blue {
+	width:42px;
+	height:42px;
+	padding:9px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	background-color: var(--color-blue--light);
+	border-radius: 6px;
+	display: flex;
+	align-self: center;
+}
+
+.statistics-main {
+	font-size: 0.875rem;
+	color: var(--color-gray);
+	margin-bottom: 12px;
+	margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+}
+
+.statistics-percentage {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 12px;
+	margin-top: 12px;
+
+}
+
+.statistics-green {
+	width:42px;
+	height:42px;
+	padding:9px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	border-radius: 6px;
+	display: flex;
+	align-self: center;
+	background-color: var(--color-green--light);
+}
+
+.statistics-orange {
+	width:42px;
+	height:42px;
+	padding:9px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	border-radius: 6px;
+	display: flex;
+	align-self: center;
+	background-color: var(--color-orange--light);
+}

@@ -10,7 +10,7 @@
 .transactions-amount {
 	display: grid;
 	justify-self: end;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .transactions-light-gray {

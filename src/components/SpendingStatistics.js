@@ -1,3 +1,5 @@
+import "../styles/SpendingStatistics.css";
+
 const SpendingStatistics = ({ transactions }) => {
   const sumOfExpenses = transactions
     .filter((transaction) => transaction.amount < 0)
@@ -22,29 +24,31 @@ const SpendingStatistics = ({ transactions }) => {
     sumOfExpenses;
 
   return (
-    <div>
-      <p>Food:</p>
-      <p>{Math.floor(foodRatio * 100)}%</p>
-      <div style={{ backgroundColor: "#F00", width: `${foodRatio * 100}%` }}>
+    <div className="statistics-wrapper">
+      <img className="statistics-green" src="food-colored.svg" alt="" />
+      <div className="statistics-main">
+        <div style={{ backgroundColor: "#F00", width: `${foodRatio * 100}%` }}>
         _
+        </div>
+        <p>Food</p>
       </div>
-      <p>Shopping:</p>
-      <p>{Math.floor(shoppingRatio * 100)}%</p>
-      <div
-        style={{ backgroundColor: "#F00", width: `${shoppingRatio * 100}%` }}
-      >
-        _
+      <p className="statistics-percentage">{Math.floor(foodRatio * 100)}%</p>
+      <img className="statistics-orange" src="shopping-colored.svg" alt="" />
+      <div className="statistics-main">
+        <div style={{ backgroundColor: "#F00", width: `${shoppingRatio * 100}%` }}>
+          _
+        </div>
+        <p>Shopping</p>
       </div>
-      <p>Transportation:</p>
-      <p>{Math.floor(transportationRatio * 100)}%</p>
-      <div
-        style={{
-          backgroundColor: "#F00",
-          width: `${transportationRatio * 100}%`,
-        }}
-      >
-        _
+      <p className="statistics-percentage">{Math.floor(shoppingRatio * 100)}%</p>
+      <img className="statistics-blue" src="travel-colored.svg" alt="" />
+      <div className="statistics-main">
+        <div style={{ backgroundColor: "#F00", width: `${transportationRatio * 100}%`,}}>
+          _
+        </div>
+        <p>Transportation</p>
       </div>
+      <p className="statistics-percentage">{Math.floor(transportationRatio * 100)}%</p>
     </div>
   );
 };
