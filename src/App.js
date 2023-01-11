@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+
+//Components
 import AddGoal from "./components/AddGoal";
 import Cards from "./components/Cards";
 import GoalsWrapper from "./components/GoalsWrapper";
@@ -7,6 +9,9 @@ import ModalWrapper from "./components/ModalWrapper";
 import ModuleWrapper from "./components/ModuleWrapper";
 import SpendingStatistics from "./components/SpendingStatistics";
 import Transactions from "./components/Transactions";
+
+//Scripts
+import { getNewTransactions } from "./helpers/getNewTransactions";
 
 // ——————
 // Dummy data:
@@ -65,66 +70,22 @@ const dummyGoals = [
 
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
+  const [loadingTransactions, setLoadingTransactions] = useState(false);
   const [goals, setGoals] = useState(dummyGoals);
   const [addGoalsVisible, setAddGoalsVisible] = useState(false);
+
+  const addNewTransactions = async () => {
+    setLoadingTransactions(true);
+    const newTransactions = await getNewTransactions(transactions);
+    setTransactions([...newTransactions, ...transactions]);
+    setLoadingTransactions(false);
+  };
 
   const showAddGoals = () => setAddGoalsVisible(true);
   const hideAddGoals = () => setAddGoalsVisible(false);
 
   const addGoal = ({ name, date, amount }) => {
-    setGoals([
-      ...goals,
-      {
-        name,
-        date,
-        amount,
-      },
-    ]);
-  };
-
-  const addRandomTransactions = () => {
-    //settings
-    const minNumberOfTransactions = 1;
-    const maxNumberOfTransactions = 8;
-    const minAmount = 0.45;
-    const maxAmount = 300;
-
-    const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-    const spendingCategories = ["transportation", "food", "shopping"];
-
-    const spendingNames = {
-      transportation: ["Uber", "SL"],
-      food: ["Max", "Roots", "Hemköp"],
-      shopping: ["H&M", "Addnature"],
-    };
-
-    let lastDate = new Date(transactions[0].date);
-
-    const numberOfTransactions = Math.floor(
-      Math.random() * (maxNumberOfTransactions - minNumberOfTransactions) +
-        minNumberOfTransactions
-    );
-
-    const newTransactions = [];
-
-    //loop!
-    for (let i = 0; i < numberOfTransactions; i++) {
-      lastDate.setDate(lastDate.getDate() + 1);
-
-      const category = randomItem(spendingCategories);
-      const name = randomItem(spendingNames[category]);
-      const amount = -Math.abs(
-        Math.round(
-          (Math.random() * (maxAmount - minAmount) + minAmount) * 100
-        ) / 100
-      );
-      const date = `${lastDate.getFullYear()}-${lastDate.getMonth()}-${lastDate.getDate()}`;
-
-      newTransactions.unshift({ name, category, amount, date });
-    }
-
-    setTransactions([...newTransactions, ...transactions]);
+    setGoals([...goals, { name, date, amount }]);
   };
 
   return (
@@ -139,7 +100,12 @@ function App() {
             <ModuleWrapper
               title="Transactions"
               titleChildren={
-                <button onClick={addRandomTransactions}>"Sync"</button>
+                <button
+                  onClick={addNewTransactions}
+                  disabled={loadingTransactions}
+                >
+                  "Sync"{loadingTransactions && " — LOADING"}
+                </button>
               }
             >
               <Transactions transactions={transactions} />
@@ -149,7 +115,12 @@ function App() {
             <ModuleWrapper
               title="Goals"
               showBackground={false}
-              titleChildren={<button onClick={showAddGoals}>Add Goal</button>}
+              titleChildren={
+                <button onClick={showAddGoals}>
+                  Add Goal{" "}
+                  <div style={{ backgroundColor: "red" }}>DIV IN BUT</div>
+                </button>
+              }
             >
               <GoalsWrapper goals={goals} />
             </ModuleWrapper>
@@ -158,23 +129,6 @@ function App() {
             </ModuleWrapper>
           </div>{" "}
         </div>
-
-        <h1>DEBUG</h1>
-        <button
-          onClick={() =>
-            setTransactions([
-              ...transactions,
-              {
-                date: "2023-01-01",
-                name: "Uber",
-                amount: -23.2,
-                category: "transportation",
-              },
-            ])
-          }
-        >
-          Add transaction
-        </button>
       </div>
       {addGoalsVisible && (
         <ModalWrapper closeCb={hideAddGoals}>
