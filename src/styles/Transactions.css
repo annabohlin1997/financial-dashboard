@@ -1,0 +1,14 @@
+.transactions-list {
+	display: grid;
+	grid-template-columns: 40px repeat(3, 1fr) 50px;
+
+}
+
+.transactions-amount {
+	display: grid;
+	justify-self: end;
+}
+
+.transactions-light-gray {
+	color: var(--color-gray);
+}
