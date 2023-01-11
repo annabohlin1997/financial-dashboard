@@ -6,7 +6,9 @@ const Transactions = ({ transactions }) => {
       <ul>
         {transactions.map((transaction, i) => (
           <li className="transactions-list" key={i}>
-            <img className="transactions-icon" src={transaction.icon + ".svg"} alt="" /> 
+            <div className="transactions-icon" >
+            <img src={transaction.icon + ".svg"} alt="" /> 
+            </div>
             <p>{transaction.name}</p> 
             <p className="transactions-light-gray">{transaction.date}</p> 
             <p className="transactions-light-gray">{transaction.category}</p> 

@@ -19,14 +19,7 @@ const Cards = ({ transactions }) => {
   return (
     <div className="cards">
       <div className="cards-card">
-        <div
-          style={{
-            backgroundColor: "skyblue",
-            minWidth: "320px",
-            minHeight: "202px",
-            borderRadius: "26px",
-          }}
-        ></div>
+        <img src="credit-card.svg" alt="" />
       </div>
       <div className="cards-statistics">
         <div className="cards-statistics-readout">
