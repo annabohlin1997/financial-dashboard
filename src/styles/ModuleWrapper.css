@@ -4,7 +4,11 @@
   padding: 16px;
 }
 
-.module-wrapper-title {
+.module-wrapper-header {
+  display: flex;
+}
+
+.module-wrapper-header-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 8px;
