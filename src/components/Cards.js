@@ -3,11 +3,6 @@ import "../styles/Cards.css";
 
 const Cards = ({ transactions }) => {
   const [cardIsActive, setCardIsActive] = useState(true);
-  // const [cardIsActiveUI, setCardIsActiveUI] = useState(true);
-
-  // useEffect(() => {
-  //   setCardIsActiveUI(cardIsActive);
-  // }, [cardIsActive]);
 
   const currentBalance = transactions.reduce(
     (sum, transaction) => sum + transaction.amount,
