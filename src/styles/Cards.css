@@ -11,12 +11,23 @@
   height: 100%;
 }
 
+.cards-card-card-wrapper {
+  position: relative;
+}
+
 .cards-card-card {
   transition: all 500ms ease;
 }
 
 .cards-card-card--inactive {
   filter: grayscale(100) blur(10px);
+}
+
+.cards-card-card-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
 }
 
 .cards-statistics-container {

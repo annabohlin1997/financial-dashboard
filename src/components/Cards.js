@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Cards.css";
 
 const Cards = ({ transactions }) => {
   const [cardIsActive, setCardIsActive] = useState(true);
+  // const [cardIsActiveUI, setCardIsActiveUI] = useState(true);
+
+  // useEffect(() => {
+  //   setCardIsActiveUI(cardIsActive);
+  // }, [cardIsActive]);
 
   const currentBalance = transactions.reduce(
     (sum, transaction) => sum + transaction.amount,
@@ -22,13 +27,23 @@ const Cards = ({ transactions }) => {
   return (
     <div className="cards">
       <div className="cards-card-container">
-        <img
-          className={`cards-card-card ${
-            cardIsActive ? "" : "cards-card-card--inactive"
-          }`.trim()}
-          src="credit-card.svg"
-          alt=""
-        />
+        <div className="cards-card-card-wrapper">
+          <img
+            className={`cards-card-card ${
+              cardIsActive ? "" : "cards-card-card--inactive"
+            }`.trim()}
+            src="credit-card.svg"
+            alt=""
+          />
+          {!cardIsActive && (
+            <button
+              className="cards-card-card-btn"
+              onClick={() => setCardIsActive(true)}
+            >
+              Activate card
+            </button>
+          )}
+        </div>
       </div>
       <div className="cards-statistics-container">
         <div className="cards-statistics-readout">
@@ -66,6 +81,7 @@ const Cards = ({ transactions }) => {
           <input
             type="checkbox"
             id="deactivateCardCheckBox"
+            checked={!cardIsActive}
             onChange={(e) => setCardIsActive(!e.target.checked)}
           />
           <label
