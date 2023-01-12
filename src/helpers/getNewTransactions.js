@@ -11,18 +11,18 @@ const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getNewTransactions = async (transactions) => {
   //settings
   const minNumberOfTransactions = 1;
-  const maxNumberOfTransactions = 8;
+  const maxNumberOfTransactions = 3;
   const minSpendAmount = 0.45;
-  const maxSpendAmount = 300;
+  const maxSpendAmount = 120;
   const minSalaryAmount = 1900;
   const maxSalaryAmount = 2100;
 
   const spendingCategories = ["transportation", "food", "shopping"];
 
   const spendingNames = {
-    transportation: ["Uber", "SL"],
-    food: ["Max", "Roots", "Hemköp"],
-    shopping: ["H&M", "Addnature"],
+    transportation: ["Uber", "SL", "Voi", "Bolt"],
+    food: ["Max", "Roots", "Hemköp", "Foodora", "Hemmakväll", "Espresso House"],
+    shopping: ["H&M", "Addnature", "Zalando", "Asos", "Elgiganten", "Clas Ohlson", "Ikea", "BikBok", "Akademibokhandeln", "MatHem", "Ica MAXI", "Gina Tricot", "Dressman", "Nike", "Adidas", "Gymshark", "Scorett", "Lindex", "Åhlens", "Arket"], 
   };
 
   let lastDate = new Date(transactions[0].date);
