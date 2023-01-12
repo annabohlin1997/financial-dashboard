@@ -105,11 +105,16 @@ const Cards = ({ transactions }) => {
         <div className="cards-statistics-readout">
           <p
             className="cards-statistics-number"
-            style={{ color: "var(--color-ui-primary)" }}
+            style={{
+              color:
+                currentBalance > 0
+                  ? "var(--color-ui-primary)"
+                  : "var(--color-ui-warning)",
+            }}
           >
-            $&nbsp;
+            {currentBalance < 0 && "-"}$&nbsp;
             <span className="cards-statistics-number--big">
-              {Math.floor(currentBalance)}
+              {Math.abs(Math.floor(currentBalance))}
             </span>
           </p>
           <p className="cards-statistics-label">Current balance</p>
