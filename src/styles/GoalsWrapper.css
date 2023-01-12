@@ -1,6 +1,6 @@
 .goals-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 1rem;
