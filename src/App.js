@@ -105,12 +105,18 @@ function App() {
             <ModuleWrapper
               title="Transactions"
               titleChildren={
-                <button
-                  onClick={addNewTransactions}
-                  disabled={loadingTransactions}
-                >
-                  "Sync"{loadingTransactions && " — LOADING"}
-                </button>
+                <>
+                  <button
+                    onClick={addNewTransactions}
+                    disabled={loadingTransactions}
+                  >
+                    "Sync"
+                  </button>
+
+                  {loadingTransactions && (
+                    <p>" — LOADING (this is temp. will be a spinner)"</p>
+                  )}
+                </>
               }
             >
               <Transactions transactions={transactions} />
