@@ -62,10 +62,7 @@ function App() {
                 </>
               }
             >
-              <Transactions
-                transactions={transactions}
-                isLoadingTransactions={isLoadingTransactions}
-              />
+              <Transactions transactions={transactions} />
             </ModuleWrapper>
           </div>
           <div>

@@ -8,7 +8,7 @@ const icons = {
   income: "salary",
 };
 
-const Transactions = ({ transactions, isLoadingTransactions }) => {
+const Transactions = ({ transactions }) => {
   const prevTransactions = useRef(transactions);
 
   useEffect(() => {
@@ -25,10 +25,6 @@ const Transactions = ({ transactions, isLoadingTransactions }) => {
       <ul>
         {transactions.map((transaction, i) => {
           const className = ["transactions-list"];
-
-          if (isLoadingTransactions) {
-            className.push("transactions-list--loading");
-          }
 
           let animationDelay = 0;
           if (i < newItemsTotalCount) {
