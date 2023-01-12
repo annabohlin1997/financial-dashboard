@@ -120,7 +120,7 @@ function App() {
             <ModuleWrapper
               title="Goals"
               showBackground={false}
-              titleChildren={<img src="plus-circle.svg"  onClick={showAddGoals}/>}
+              titleChildren={<img className="addGoal" src="plus-circle.svg"  onClick={showAddGoals}/>}
             >
               <GoalsWrapper goals={goals} />
             </ModuleWrapper>
