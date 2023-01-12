@@ -64,5 +64,4 @@
 .statistics-bar-fill {
   height: inherit;
   border-radius: inherit;
-  transition: width ease 1s;
 }

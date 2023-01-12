@@ -120,12 +120,7 @@ function App() {
             <ModuleWrapper
               title="Goals"
               showBackground={false}
-              titleChildren={
-                <button onClick={showAddGoals}>
-                  Add Goal{" "}
-                  <div style={{ backgroundColor: "red" }}>DIV IN BUT</div>
-                </button>
-              }
+              titleChildren={<button onClick={showAddGoals}>Add Goal </button>}
             >
               <GoalsWrapper goals={goals} />
             </ModuleWrapper>
