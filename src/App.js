@@ -88,7 +88,7 @@ function App() {
       </div>
       {addGoalsVisible && (
         <ModalWrapper closeCb={hideAddGoals}>
-          <ModuleWrapper title="Add goal (temp)">
+          <ModuleWrapper title="Add goal">
             <AddGoal addGoalCb={addGoal} closeCb={hideAddGoals} />
           </ModuleWrapper>
         </ModalWrapper>

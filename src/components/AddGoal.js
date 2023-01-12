@@ -21,34 +21,50 @@ const AddGoal = ({ addGoalCb, closeCb }) => {
   return (
     <div className="add-goal">
       <form className="add-goal-form" onSubmit={onSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          type="text"
-          placeholder="Date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-        <label htmlFor="amount">Amount</label>
-        <input
-          id="amount"
-          type="text"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-
-        <Button type="submit" label="Save Goal" />
-        {/* <input type="submit" value="Save Goal" /> */}
-        <Button onClick={onClose} label="Cancel" />
+        <div className="add-goal-form-input-with-label-wrapper">
+          <input
+            id="name"
+            type="text"
+            required
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label className="add-goal-form-label" htmlFor="name">
+            Name
+          </label>
+        </div>
+        <div className="add-goal-form-input-with-label-wrapper">
+          <input
+            id="date"
+            type="text"
+            required
+            placeholder="Date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <label className="add-goal-form-label" htmlFor="date">
+            Date
+          </label>
+        </div>
+        <div className="add-goal-form-input-with-label-wrapper">
+          <input
+            id="amount"
+            type="number"
+            step="10"
+            required
+            placeholder="Amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <label className="add-goal-form-label" htmlFor="amount">
+            Amount
+          </label>
+        </div>
+        <div className="add-goal-form-input-buttons-wrapper">
+          <Button label="Cancel" variant="secondary" onClick={onClose} />
+          <Button label="Save Goal" type="submit" />
+        </div>
       </form>
     </div>
   );

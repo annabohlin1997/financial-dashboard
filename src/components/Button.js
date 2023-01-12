@@ -1,10 +1,8 @@
 import "../styles/Button.css";
 
-const Button = ({ onClick, label, className, type }) => {
-  console.log(type);
-  className = `button ${className}`;
-
-  let returnComponent;
+const Button = ({ onClick, label, className, type, variant }) => {
+  const variantClass = variant === "secondary" ? "button--secondary" : "";
+  className = `button ${variantClass} ${className}`;
 
   if (type === "submit") {
     return <input className={className} type="submit" value={label} />;
@@ -18,6 +16,9 @@ const Button = ({ onClick, label, className, type }) => {
   }
 };
 
-Button.defaultProps = { type: "default" };
+Button.defaultProps = {
+  type: "default",
+  variant: "primary",
+};
 
 export default Button;

@@ -10,3 +10,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.modal-wrapper > * {
+  width: 100%;
+  max-width: 480px;
+  margin: 16px;
+}

@@ -17,3 +17,13 @@
   filter: brightness(0.8);
   /* text-decoration: underline; */
 }
+
+.button--secondary {
+  border: 2px solid var(--color-ui-highlight);
+  /* color: var(--color-ui-highlight); */
+  background: none;
+}
+
+.button--secondary:hover {
+  background-color: var(--color-ui-highlight);
+}

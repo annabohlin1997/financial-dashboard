@@ -1,7 +1,32 @@
 .add-goal {
+  max-width: 600px;
 }
 
 .add-goal-form {
   display: flex;
   flex-direction: column;
+}
+
+.add-goal-form-input-with-label-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.add-goal-form-input-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 16px;
+  /* margin-bottom: 16px; */
+}
+
+.add-goal-form-input-buttons-wrapper > * {
+  width: 100%;
+  max-width: 8rem;
+}
+
+.add-goal-form-label {
+  font-size: 0.875rem;
+  color: var(--color-gray);
 }
