@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/AddGoal.css";
+import Button from "./Button";
 
 const AddGoal = ({ addGoalCb, closeCb }) => {
   const [name, setName] = useState("");
@@ -44,8 +45,10 @@ const AddGoal = ({ addGoalCb, closeCb }) => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <input type="submit" value="Save Goal" />
-        <button onClick={onClose}>Cancel</button>
+
+        <Button type="submit" label="Save Goal" />
+        {/* <input type="submit" value="Save Goal" /> */}
+        <Button onClick={onClose} label="Cancel" />
       </form>
     </div>
   );

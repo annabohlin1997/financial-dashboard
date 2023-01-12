@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { clamp, smootherstep } from "../helpers/mathHelpers";
 import "../styles/Cards.css";
+import Button from "./Button";
 
 const Cards = ({ transactions }) => {
   const [cardIsActive, setCardIsActive] = useState(true);
@@ -92,12 +93,11 @@ const Cards = ({ transactions }) => {
             alt=""
           />
           {!cardIsActive && (
-            <button
-              className="cards-card-card-btn"
+            <Button
               onClick={() => setCardIsActive(true)}
-            >
-              Activate card
-            </button>
+              label="Activate card"
+              className="cards-card-card-btn"
+            ></Button>
           )}
         </div>
       </div>
