@@ -13,3 +13,38 @@
   font-size: 1.25rem;
   font-weight: 700;
 }
+
+.module-wrapper-header-btn {
+  padding: 0;
+  background: none;
+  border: none;
+  transition: all 500ms ease;
+}
+
+.module-wrapper-header-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.module-wrapper-header-btn--spin {
+  animation: rotate 1000ms linear infinite;
+}
+
+.module-wrapper-header-btn--spin:disabled {
+  opacity: 1;
+  /* animation: rotate 1000ms linear infinite; */
+}
+
+.module-wrapper-header-btn:hover {
+  filter: brightness(0.8);
+}
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}

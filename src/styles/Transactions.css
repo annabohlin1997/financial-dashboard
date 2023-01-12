@@ -7,6 +7,9 @@
   font-size: 0.875rem;
 }
 
+.transactions-list--loading {
+}
+
 .transactions-list:last-of-type {
   border: none;
 }

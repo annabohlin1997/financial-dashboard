@@ -75,15 +75,15 @@ const dummyGoals = [
 
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
-  const [loadingTransactions, setLoadingTransactions] = useState(false);
+  const [isLoadingTransactions, setIsLoadingTransactions] = useState(false);
   const [goals, setGoals] = useState(dummyGoals);
   const [addGoalsVisible, setAddGoalsVisible] = useState(false);
 
   const addNewTransactions = async () => {
-    setLoadingTransactions(true);
+    setIsLoadingTransactions(true);
     const newTransactions = await getNewTransactions(transactions);
     setTransactions([...newTransactions, ...transactions]);
-    setLoadingTransactions(false);
+    setIsLoadingTransactions(false);
   };
 
   const showAddGoals = () => setAddGoalsVisible(true);
@@ -106,19 +106,24 @@ function App() {
               title="Transactions"
               titleChildren={
                 <>
-                  <img
-                    src="sync.svg"
+                  <button
+                    className={`module-wrapper-header-btn ${
+                      isLoadingTransactions
+                        ? "module-wrapper-header-btn--spin"
+                        : ""
+                    }`}
                     onClick={addNewTransactions}
-                    disabled={loadingTransactions}
-                  />
-
-                  {loadingTransactions && (
-                    <p>" — LOADING (this is temp. will be a spinner)"</p>
-                  )}
+                    disabled={isLoadingTransactions}
+                  >
+                    <img src="sync.svg" />
+                  </button>
                 </>
               }
             >
-              <Transactions transactions={transactions} />
+              <Transactions
+                transactions={transactions}
+                isLoadingTransactions={isLoadingTransactions}
+              />
             </ModuleWrapper>
           </div>
           <div>
@@ -126,7 +131,12 @@ function App() {
               title="Goals"
               showBackground={false}
               titleChildren={
-                <img src="plus-circle.svg" onClick={showAddGoals} />
+                <button
+                  className="module-wrapper-header-btn"
+                  onClick={showAddGoals}
+                >
+                  <img src="plus-circle.svg" />
+                </button>
               }
             >
               <GoalsWrapper goals={goals} />
