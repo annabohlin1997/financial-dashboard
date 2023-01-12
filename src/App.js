@@ -96,7 +96,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <img  className="logo" src="logo.svg" alt="Cloudcash cloud logo"></img>
+        <img className="logo" src="logo.svg" alt="Cloudcash cloud logo"></img>
         <div className="columns">
           <div>
             <ModuleWrapper title="Cards">
@@ -126,11 +126,7 @@ function App() {
               title="Goals"
               showBackground={false}
               titleChildren={
-                <img
-                  className="addGoal"
-                  src="plus-circle.svg"
-                  onClick={showAddGoals}
-                />
+                <img src="plus-circle.svg" onClick={showAddGoals} />
               }
             >
               <GoalsWrapper goals={goals} />
