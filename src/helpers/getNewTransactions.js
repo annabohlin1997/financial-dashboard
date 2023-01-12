@@ -21,8 +21,8 @@ const getNewTransactions = async (transactions) => {
 
   const spendingNames = {
     transportation: ["Uber", "SL", "Voi", "Bolt"],
-    food: ["Max", "Roots", "Hemköp", "Foodora", "Hemmakväll", "Espresso House"],
-    shopping: ["H&M", "Addnature", "Zalando", "Asos", "Elgiganten", "Clas Ohlson", "Ikea", "BikBok", "Akademibokhandeln", "MatHem", "Ica MAXI", "Gina Tricot", "Dressman", "Nike", "Adidas", "Gymshark", "Scorett", "Lindex", "Åhlens", "Arket"], 
+    food: ["Max", "Roots", "Hemköp", "Foodora", "Hemmakväll", "Espresso House", "MatHem", "Ica MAXI"],
+    shopping: ["H&M", "Addnature", "Zalando", "Asos", "Elgiganten", "Clas Ohlson", "Ikea", "BikBok", "Akademibokhandeln", "Gina Tricot", "Dressman", "Nike", "Adidas", "Gymshark", "Scorett", "Lindex", "Åhlens", "Arket"], 
   };
 
   let lastDate = new Date(transactions[0].date);
