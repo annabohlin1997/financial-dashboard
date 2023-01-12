@@ -1,35 +1,120 @@
+import { useEffect, useRef, useState } from "react";
+import { clamp, smootherstep } from "../helpers/mathHelpers";
 import "../styles/Cards.css";
 
 const Cards = ({ transactions }) => {
-  const currentBalance = transactions.reduce(
-    (sum, transaction) => sum + transaction.amount,
-    0
-  );
+  const [cardIsActive, setCardIsActive] = useState(true);
+  const [currentBalance, setCurrentBalance] = useState(0);
+  const [income, setIncome] = useState(0);
+  const [expenses, setExpenses] = useState(0);
 
-  const income = transactions
-    .filter((transaction) => transaction.amount > 0)
-    .reduce((sum, transaction) => sum + transaction.amount, 0);
+  const requestAnimationFrameRef = useRef();
+  const animStartTime = useRef();
+  const animTimeMs = 800;
 
-  const expenses = Math.abs(
-    transactions
-      .filter((transaction) => transaction.amount < 0)
-      .reduce((sum, transaction) => sum + transaction.amount, 0)
-  );
+  const animCurrentBalanceStart = useRef();
+  const animCurrentBalanceEnd = useRef();
+  const animIncomeStart = useRef();
+  const animIncomeEnd = useRef();
+  const animExpensesStart = useRef();
+  const animExpensesEnd = useRef();
+
+  useEffect(() => {
+    cancelAnimationFrame(requestAnimationFrameRef.current);
+
+    //animation starts here
+    animStartTime.current = Date.now();
+
+    animCurrentBalanceStart.current = currentBalance;
+    animCurrentBalanceEnd.current = transactions.reduce(
+      (sum, transaction) => sum + transaction.amount,
+      0
+    );
+
+    animIncomeStart.current = income;
+    animIncomeEnd.current = transactions
+      .filter((transaction) => transaction.amount > 0)
+      .reduce((sum, transaction) => sum + transaction.amount, 0);
+
+    animExpensesStart.current = expenses;
+    animExpensesEnd.current = Math.abs(
+      transactions
+        .filter((transaction) => transaction.amount < 0)
+        .reduce((sum, transaction) => sum + transaction.amount, 0)
+    );
+
+    requestAnimationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(requestAnimationFrameRef.current);
+  }, [transactions]);
+
+  const animate = () => {
+    const animProgress = clamp(
+      (Date.now() - animStartTime.current) / animTimeMs,
+      0,
+      1
+    );
+
+    setCurrentBalance(
+      smootherstep(
+        animProgress,
+        animCurrentBalanceStart.current,
+        animCurrentBalanceEnd.current
+      )
+    );
+
+    setIncome(
+      smootherstep(animProgress, animIncomeStart.current, animIncomeEnd.current)
+    );
+
+    setExpenses(
+      smootherstep(
+        animProgress,
+        animExpensesStart.current,
+        animExpensesEnd.current
+      )
+    );
+
+    if (animProgress < 1) {
+      requestAnimationFrameRef.current = requestAnimationFrame(animate);
+    }
+  };
 
   return (
     <div className="cards">
-      <div className="cards-card">
-        <img src="credit-card.svg" alt="" />
+      <div className="cards-card-container">
+        <div className="cards-card-card-wrapper">
+          <img
+            className={`cards-card-card ${
+              cardIsActive ? "" : "cards-card-card--inactive"
+            }`.trim()}
+            src="credit-card.svg"
+            alt=""
+          />
+          {!cardIsActive && (
+            <button
+              className="cards-card-card-btn"
+              onClick={() => setCardIsActive(true)}
+            >
+              Activate card
+            </button>
+          )}
+        </div>
       </div>
-      <div className="cards-statistics">
+      <div className="cards-statistics-container">
         <div className="cards-statistics-readout">
           <p
             className="cards-statistics-number"
-            style={{ color: "var(--color-ui-primary)" }}
+            style={{
+              color:
+                currentBalance > 0
+                  ? "var(--color-ui-primary)"
+                  : "var(--color-ui-warning)",
+            }}
           >
-            $&nbsp;
+            {currentBalance < 0 && "-"}$&nbsp;
             <span className="cards-statistics-number--big">
-              {Math.floor(currentBalance)}
+              {Math.abs(Math.floor(currentBalance))}
             </span>
           </p>
           <p className="cards-statistics-label">Current balance</p>
@@ -51,6 +136,21 @@ const Cards = ({ transactions }) => {
             $&nbsp;{Math.floor(expenses)}
           </p>
           <p className="cards-statistics-label">Expenses</p>
+        </div>
+
+        <div className="cards-statistics-readout">
+          <input
+            type="checkbox"
+            id="deactivateCardCheckBox"
+            checked={!cardIsActive}
+            onChange={(e) => setCardIsActive(!e.target.checked)}
+          />
+          <label
+            htmlFor="deactivateCardCheckBox"
+            className="cards-statistics-label"
+          >
+            Deactivate card
+          </label>
         </div>
       </div>
     </div>

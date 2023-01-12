@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+
+//Components
 import AddGoal from "./components/AddGoal";
 import Cards from "./components/Cards";
 import GoalsWrapper from "./components/GoalsWrapper";
@@ -8,44 +10,47 @@ import ModuleWrapper from "./components/ModuleWrapper";
 import SpendingStatistics from "./components/SpendingStatistics";
 import Transactions from "./components/Transactions";
 
+//Scripts
+import { getNewTransactions } from "./helpers/getNewTransactions";
+
 // ——————
 // Dummy data:
 const dummyTransactions = [
   {
+    id: 5,
     date: "2023-01-01",
     name: "Uber",
     amount: -32.2,
     category: "transportation",
-    icon: "travel-gray",
   },
   {
+    id: 4,
     date: "2023-01-01",
     name: "Max",
     amount: -16.23,
     category: "food",
-    icon: "food-gray",
   },
   {
+    id: 3,
     date: "2022-12-30",
     name: "Systembolaget",
     amount: -65.96,
     category: "food",
-    icon: "food-gray",
   },
   {
+    id: 2,
     date: "2022-12-29",
     name: "H&M",
     amount: -112.14,
     category: "shopping",
-    icon: "shopping-gray",
   },
 
   {
+    id: 1,
     date: "2022-12-25",
     name: "Salary",
     amount: 2000,
     category: "income",
-    icon: "salary",
   },
 ];
 
@@ -70,21 +75,22 @@ const dummyGoals = [
 
 function App() {
   const [transactions, setTransactions] = useState(dummyTransactions);
+  const [loadingTransactions, setLoadingTransactions] = useState(false);
   const [goals, setGoals] = useState(dummyGoals);
   const [addGoalsVisible, setAddGoalsVisible] = useState(false);
+
+  const addNewTransactions = async () => {
+    setLoadingTransactions(true);
+    const newTransactions = await getNewTransactions(transactions);
+    setTransactions([...newTransactions, ...transactions]);
+    setLoadingTransactions(false);
+  };
 
   const showAddGoals = () => setAddGoalsVisible(true);
   const hideAddGoals = () => setAddGoalsVisible(false);
 
   const addGoal = ({ name, date, amount }) => {
-    setGoals([
-      ...goals,
-      {
-        name,
-        date,
-        amount,
-      },
-    ]);
+    setGoals([...goals, { name, date, amount }]);
   };
 
   return (
@@ -96,7 +102,17 @@ function App() {
             <ModuleWrapper title="Cards">
               <Cards transactions={transactions} />
             </ModuleWrapper>
-            <ModuleWrapper title="Transactions">
+            <ModuleWrapper
+              title="Transactions"
+              titleChildren={
+                <button
+                  onClick={addNewTransactions}
+                  disabled={loadingTransactions}
+                >
+                  "Sync"{loadingTransactions && " — LOADING"}
+                </button>
+              }
+            >
               <Transactions transactions={transactions} />
             </ModuleWrapper>
           </div>
@@ -104,7 +120,7 @@ function App() {
             <ModuleWrapper
               title="Goals"
               showBackground={false}
-              titleChildren={<img src="plus-circle.svg" alt=""  onClick={showAddGoals}  />}
+              titleChildren={<button onClick={showAddGoals}>Add Goal</button>}
             >
               <GoalsWrapper goals={goals} />
             </ModuleWrapper>
@@ -113,23 +129,6 @@ function App() {
             </ModuleWrapper>
           </div>{" "}
         </div>
-
-        <h1>DEBUG</h1>
-        <button
-          onClick={() =>
-            setTransactions([
-              ...transactions,
-              {
-                date: "2023-01-01",
-                name: "Uber",
-                amount: -23.2,
-                category: "transportation",
-              },
-            ])
-          }
-        >
-          Add transaction
-        </button>
       </div>
       {addGoalsVisible && (
         <ModalWrapper closeCb={hideAddGoals}>

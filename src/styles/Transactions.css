@@ -1,28 +1,50 @@
 .transactions-list {
-	display: grid;
-	grid-template-columns: 40px repeat(3, 1fr) 50px;
- border-top: 1px solid var(--color-light-gray);
- padding-top: 0.625rem;
- padding-bottom: 0.625rem;
- font-size: 0.875rem;
+  display: grid;
+  grid-template-columns: 40px repeat(3, 1fr) 50px;
+  border-bottom: 1px solid var(--color-light-gray);
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.transactions-list:last-of-type {
+  border: none;
+}
+
+.transactions-list--new {
+  opacity: 0%;
+  animation-duration: 1000ms;
+  animation-name: transactions-list--new;
+  animation-fill-mode: forwards;
 }
 
 .transactions-amount {
-	display: grid;
-	justify-self: end;
-	font-weight: bold;
+  display: grid;
+  justify-self: end;
+  font-weight: 600;
 }
 
 .transactions-light-gray {
-	color: var(--color-gray);
+  color: var(--color-gray);
 }
 
 .transactions-icon {
-	width:20px;
-	height:20px;
-	padding:4px;
-	background-color: var(--color-light-gray);
-	border-radius: 6px;
-	display: flex;
-	align-self: center;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  background-color: var(--color-light-gray);
+  border-radius: 6px;
+  display: flex;
+  align-self: center;
+}
+
+@keyframes transactions-list--new {
+  from {
+    opacity: 0%;
+    background-color: var(--color-ui-success);
+  }
+
+  to {
+    opacity: 100%;
+  }
 }

@@ -1,7 +1,9 @@
 import "../styles/ModuleWrapper.css";
 
 const ModuleWrapper = ({ title, titleChildren, showBackground, children }) => {
-  const className = `module-wrapper ${showBackground && "card-look"}`;
+  const className = `module-wrapper ${
+    showBackground ? "card-look" : ""
+  }`.trim();
 
   const handleClick = (e) => {
     e.stopPropagation();
