@@ -96,7 +96,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <img src="logo.svg" alt="Cloudcash cloud logo"></img>
+        <img  className="logo" src="logo.svg" alt="Cloudcash cloud logo"></img>
         <div className="columns">
           <div>
             <ModuleWrapper title="Cards">
