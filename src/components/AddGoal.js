@@ -37,9 +37,9 @@ const AddGoal = ({ addGoalCb, closeCb }) => {
         <div className="add-goal-form-input-with-label-wrapper">
           <input
             id="date"
-            type="text"
+            type="date"
             required
-            placeholder="Date"
+            placeholder="2022-01-01"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -53,7 +53,7 @@ const AddGoal = ({ addGoalCb, closeCb }) => {
             type="number"
             step="10"
             required
-            placeholder="Amount"
+            placeholder="$"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
