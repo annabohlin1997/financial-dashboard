@@ -49,13 +49,11 @@ const Cards = ({ transactions }) => {
   }, [transactions]);
 
   const animate = () => {
-    console.log("frame");
     const animProgress = clamp(
       (Date.now() - animStartTime.current) / animTimeMs,
       0,
       1
     );
-    console.log(animProgress);
 
     setCurrentBalance(
       smootherstep(

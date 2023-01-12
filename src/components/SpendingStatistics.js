@@ -60,7 +60,6 @@ const SpendingStatistics = ({ transactions }) => {
       0,
       1
     );
-    console.log(animProgress);
 
     setFoodRatio(
       smootherstep(
