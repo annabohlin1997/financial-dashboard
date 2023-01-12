@@ -139,12 +139,15 @@ const Cards = ({ transactions }) => {
         </div>
 
         <div className="cards-statistics-readout">
-          <input
-            type="checkbox"
-            id="deactivateCardCheckBox"
-            checked={!cardIsActive}
-            onChange={(e) => setCardIsActive(!e.target.checked)}
-          />
+          <label className="cards-toggle-switch">
+            <input
+              type="checkbox"
+              id="deactivateCardCheckBox"
+              checked={!cardIsActive}
+              onChange={(e) => setCardIsActive(!e.target.checked)}
+            />
+            <span className="cards-toggle-slider"></span>
+          </label>
           <label
             htmlFor="deactivateCardCheckBox"
             className="cards-statistics-label"
