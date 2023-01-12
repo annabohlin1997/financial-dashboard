@@ -14,7 +14,6 @@ const ModuleWrapper = ({ title, titleChildren, showBackground, children }) => {
       <div className="module-wrapper-header">
         <h2 className="module-wrapper-header-title">{title}</h2>
         {titleChildren}
-        {/* <button>Add Goal</button> */}
       </div>
       {children}
     </div>
