@@ -1,7 +1,9 @@
 .goals-wrapper {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 1rem;
-  margin: 1rem;
+  margin-right: 16px;
+  margin-top: 16px;
 }
