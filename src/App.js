@@ -106,12 +106,11 @@ function App() {
               title="Transactions"
               titleChildren={
                 <>
-                  <button
+                  <img
+                    src="sync.svg"
                     onClick={addNewTransactions}
                     disabled={loadingTransactions}
-                  >
-                    "Sync"
-                  </button>
+                  />
 
                   {loadingTransactions && (
                     <p>" — LOADING (this is temp. will be a spinner)"</p>
@@ -126,7 +125,13 @@ function App() {
             <ModuleWrapper
               title="Goals"
               showBackground={false}
-              titleChildren={<img className="addGoal" src="plus-circle.svg"  onClick={showAddGoals}/>}
+              titleChildren={
+                <img
+                  className="addGoal"
+                  src="plus-circle.svg"
+                  onClick={showAddGoals}
+                />
+              }
             >
               <GoalsWrapper goals={goals} />
             </ModuleWrapper>
