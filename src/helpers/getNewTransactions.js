@@ -11,7 +11,7 @@ const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getNewTransactions = async (transactions) => {
   //settings
   const minNumberOfTransactions = 1;
-  const maxNumberOfTransactions = 3;
+  const maxNumberOfTransactions = 5;
   const minSpendAmount = 0.45;
   const maxSpendAmount = 120;
   const minSalaryAmount = 1900;
