@@ -3,8 +3,7 @@ import { clamp, smootherstep } from "../helpers/mathHelpers";
 import "../styles/Cards.css";
 import Button from "./Button";
 
-const Cards = ({ transactions }) => {
-  const [cardIsActive, setCardIsActive] = useState(true);
+const Cards = ({ transactions, cardIsActive, setCardIsActive }) => {
   const [currentBalance, setCurrentBalance] = useState(0);
   const [income, setIncome] = useState(0);
   const [expenses, setExpenses] = useState(0);

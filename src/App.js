@@ -20,6 +20,7 @@ function App() {
 
   const [isLoadingTransactions, setIsLoadingTransactions] = useState(false);
   const [addGoalsVisible, setAddGoalsVisible] = useState(false);
+  const [cardIsActive, setCardIsActive] = useState(true);
 
   const addNewTransactions = async () => {
     setIsLoadingTransactions(true);
@@ -42,7 +43,7 @@ function App() {
         <div className="columns">
           <div>
             <ModuleWrapper title="Cards">
-              <Cards transactions={transactions} />
+              <Cards transactions={transactions} cardIsActive={cardIsActive} setCardIsActive={setCardIsActive}/>
             </ModuleWrapper>
             <ModuleWrapper
               title="Transactions"
@@ -55,7 +56,7 @@ function App() {
                         : ""
                     }`}
                     onClick={addNewTransactions}
-                    disabled={isLoadingTransactions}
+                    disabled={isLoadingTransactions || !cardIsActive}
                   >
                     <img src="sync.svg" />
                   </button>
