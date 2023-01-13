@@ -41,7 +41,7 @@
 @keyframes transactions-list--new {
   from {
     opacity: 0%;
-    background-color: var(--color-ui-success);
+    background-color: var(--color-gray);
   }
 
   to {

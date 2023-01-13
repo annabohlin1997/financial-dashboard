@@ -29,7 +29,7 @@ const Transactions = ({ transactions }) => {
           let animationDelay = 0;
           if (i < newItemsTotalCount) {
             className.push("transactions-list--new");
-            animationDelay = (newItemsTotalCount - newItemsCounter) * 30;
+            animationDelay = (newItemsTotalCount - newItemsCounter) * 50;
             newItemsCounter++;
           }
 

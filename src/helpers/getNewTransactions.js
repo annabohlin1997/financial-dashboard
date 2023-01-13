@@ -16,6 +16,8 @@ const getNewTransactions = async (transactions) => {
   const maxSpendAmount = 120;
   const minSalaryAmount = 1900;
   const maxSalaryAmount = 2100;
+  const minWaitMs = 900;
+  const maxWaitMs = 1500;
 
   const spendingCategories = ["transportation", "food", "shopping"];
 
@@ -121,7 +123,7 @@ const getNewTransactions = async (transactions) => {
     });
   }
 
-  await asyncTimeout(Math.floor(randomInRange(500, 1500)));
+  await asyncTimeout(Math.floor(randomInRange(minWaitMs, maxWaitMs)));
   return newTransactions;
 };
 
