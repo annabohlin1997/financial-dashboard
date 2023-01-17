@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { clamp, smootherstep } from "../helpers/mathHelpers";
+import animate from "../helpers/animate";
 import "../styles/Cards.css";
 import Button from "./Button";
 
@@ -9,76 +9,53 @@ const Cards = ({ transactions, cardIsActive, setCardIsActive }) => {
   const [expenses, setExpenses] = useState(0);
 
   const requestAnimationFrameRef = useRef();
-  const animStartTime = useRef();
-  const animTimeMs = 800;
-
-  const animCurrentBalanceStart = useRef();
-  const animCurrentBalanceEnd = useRef();
-  const animIncomeStart = useRef();
-  const animIncomeEnd = useRef();
-  const animExpensesStart = useRef();
-  const animExpensesEnd = useRef();
 
   useEffect(() => {
-    cancelAnimationFrame(requestAnimationFrameRef.current);
-
-    //animation starts here
-    animStartTime.current = Date.now();
-
-    animCurrentBalanceStart.current = currentBalance;
-    animCurrentBalanceEnd.current = transactions.reduce(
+    const newCurrentBalance = transactions.reduce(
       (sum, transaction) => sum + transaction.amount,
       0
     );
 
-    animIncomeStart.current = income;
-    animIncomeEnd.current = transactions
+    const newIncome = transactions
       .filter((transaction) => transaction.amount > 0)
       .reduce((sum, transaction) => sum + transaction.amount, 0);
 
-    animExpensesStart.current = expenses;
-    animExpensesEnd.current = Math.abs(
+    const newExpenses = Math.abs(
       transactions
         .filter((transaction) => transaction.amount < 0)
         .reduce((sum, transaction) => sum + transaction.amount, 0)
     );
 
-    requestAnimationFrameRef.current = requestAnimationFrame(animate);
+    cancelAnimationFrame(requestAnimationFrameRef.current);
+    animate({
+      refCallBack: (ref) => (requestAnimationFrameRef.current = ref),
+      animations: [
+        {
+          timeMs: 800,
+          delayMs: 0,
+          startValue: currentBalance,
+          endValue: newCurrentBalance,
+          callBack: setCurrentBalance,
+        },
+        {
+          timeMs: 1000,
+          delayMs: 0,
+          startValue: income,
+          endValue: newIncome,
+          callBack: setIncome,
+        },
+        {
+          timeMs: 1200,
+          delayMs: 0,
+          startValue: expenses,
+          endValue: newExpenses,
+          callBack: setExpenses,
+        },
+      ],
+    });
 
     return () => cancelAnimationFrame(requestAnimationFrameRef.current);
   }, [transactions]);
-
-  const animate = () => {
-    const animProgress = clamp(
-      (Date.now() - animStartTime.current) / animTimeMs,
-      0,
-      1
-    );
-
-    setCurrentBalance(
-      smootherstep(
-        animProgress,
-        animCurrentBalanceStart.current,
-        animCurrentBalanceEnd.current
-      )
-    );
-
-    setIncome(
-      smootherstep(animProgress, animIncomeStart.current, animIncomeEnd.current)
-    );
-
-    setExpenses(
-      smootherstep(
-        animProgress,
-        animExpensesStart.current,
-        animExpensesEnd.current
-      )
-    );
-
-    if (animProgress < 1) {
-      requestAnimationFrameRef.current = requestAnimationFrame(animate);
-    }
-  };
 
   return (
     <div className="cards">
