@@ -34,8 +34,6 @@ const SpendingStatistics = ({ transactions }) => {
   const requestAnimationFrameRef = useRef();
 
   useEffect(() => {
-    cancelAnimationFrame(requestAnimationFrameRef.current);
-
     const sumOfExpenses = transactions
       .filter((transaction) => transaction.amount < 0)
       .reduce((sum, transaction) => sum + transaction.amount, 0);
@@ -58,6 +56,7 @@ const SpendingStatistics = ({ transactions }) => {
         .reduce((sum, transaction) => sum + transaction.amount, 0) /
       sumOfExpenses;
 
+    cancelAnimationFrame(requestAnimationFrameRef.current);
     animate({
       animTimeMs: 800,
       refCallBack: (ref) => (requestAnimationFrameRef.current = ref),
