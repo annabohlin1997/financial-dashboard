@@ -26,7 +26,6 @@ const Cards = ({ transactions, cardIsActive, setCardIsActive }) => {
         .reduce((sum, transaction) => sum + transaction.amount, 0)
     );
 
-    cancelAnimationFrame(requestAnimationFrameRef.current);
     animate({
       refCallBack: (ref) => (requestAnimationFrameRef.current = ref),
       animations: [

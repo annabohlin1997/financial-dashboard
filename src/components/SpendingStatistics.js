@@ -32,7 +32,6 @@ const SpendingStatistics = ({ transactions }) => {
         .reduce((sum, transaction) => sum + transaction.amount, 0) /
       sumOfExpenses;
 
-    cancelAnimationFrame(requestAnimationFrameRef.current);
     animate({
       refCallBack: (ref) => (requestAnimationFrameRef.current = ref),
       animations: [
