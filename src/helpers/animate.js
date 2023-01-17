@@ -4,21 +4,36 @@ const smootherstep = (x, v0, v1) => {
   return v0 + (v1 - v0) * (x ** 3 * (x * (x * 6 - 15) + 10));
 };
 
-const animate = ({ animTimeMs, animations, refCallBack }) => {
+const animate = ({ animations, refCallBack }) => {
   const animStartTime = Date.now();
 
-  const animFrame = () => {
-    const animProgress = clamp((Date.now() - animStartTime) / animTimeMs, 0, 1);
+  const completedAnimations = [];
 
+  const animFrame = () => {
     refCallBack(
       requestAnimationFrame(() => {
-        for (let animation of animations) {
+        for (let [animationIndex, animation] of animations.entries()) {
+          if (completedAnimations.includes(animationIndex)) continue;
+
+          const animProgress = clamp(
+            (Date.now() - animStartTime - animation.animDelayMs) /
+              animation.animTimeMs,
+            0,
+            1
+          );
+
+          if (animProgress === 0) {
+            continue;
+          } else if (animProgress === 1) {
+            completedAnimations.push(animationIndex);
+          }
+
           animation.animCallBack(
             smootherstep(animProgress, animation.animStartV, animation.animEndV)
           );
         }
 
-        if (animProgress < 1) {
+        if (animations.length !== completedAnimations.length) {
           animFrame();
         }
       })

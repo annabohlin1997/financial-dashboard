@@ -34,20 +34,25 @@ const SpendingStatistics = ({ transactions }) => {
 
     cancelAnimationFrame(requestAnimationFrameRef.current);
     animate({
-      animTimeMs: 800,
       refCallBack: (ref) => (requestAnimationFrameRef.current = ref),
       animations: [
         {
+          animTimeMs: 800,
+          animDelayMs: 0,
           animStartV: foodRatio,
           animEndV: newFoodRatio,
           animCallBack: setFoodRatio,
         },
         {
+          animTimeMs: 1000,
+          animDelayMs: 0,
           animStartV: shoppingRatio,
           animEndV: newShoppingRatio,
           animCallBack: setShoppingRatio,
         },
         {
+          animTimeMs: 1200,
+          animDelayMs: 0,
           animStartV: transportationRatio,
           animEndV: newTransportationRatio,
           animCallBack: setTransportationRatio,
