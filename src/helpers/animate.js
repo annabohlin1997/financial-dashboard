@@ -5,32 +5,32 @@ const smootherstep = (x, v0, v1) => {
 };
 
 const animate = ({ animations, refCallBack }) => {
-  const animStartTime = Date.now();
+  const startTimeMs = Date.now();
 
   const completedAnimations = [];
 
   const animFrame = () => {
     refCallBack(
       requestAnimationFrame(() => {
-        for (let [animationIndex, animation] of animations.entries()) {
+        for (let [
+          animationIndex,
+          { timeMs, delayMs, startValue, endValue, callBack },
+        ] of animations.entries()) {
           if (completedAnimations.includes(animationIndex)) continue;
 
-          const animProgress = clamp(
-            (Date.now() - animStartTime - animation.animDelayMs) /
-              animation.animTimeMs,
+          const progress = clamp(
+            (Date.now() - startTimeMs - delayMs) / timeMs,
             0,
             1
           );
 
-          if (animProgress === 0) {
+          if (progress === 0) {
             continue;
-          } else if (animProgress === 1) {
+          } else if (progress === 1) {
             completedAnimations.push(animationIndex);
           }
 
-          animation.animCallBack(
-            smootherstep(animProgress, animation.animStartV, animation.animEndV)
-          );
+          callBack(smootherstep(progress, startValue, endValue));
         }
 
         if (animations.length !== completedAnimations.length) {
