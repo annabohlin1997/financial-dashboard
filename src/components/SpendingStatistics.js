@@ -1,30 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { clamp, smootherstep } from "../helpers/mathHelpers";
+import animate from "../helpers/animate";
 import "../styles/SpendingStatistics.css";
-
-const animate = ({ animTimeMs, animations, refCallBack }) => {
-  const animStartTime = Date.now();
-
-  const animFrame = () => {
-    const animProgress = clamp((Date.now() - animStartTime) / animTimeMs, 0, 1);
-
-    refCallBack(
-      requestAnimationFrame(() => {
-        for (let animation of animations) {
-          animation.animCallBack(
-            smootherstep(animProgress, animation.animStartV, animation.animEndV)
-          );
-        }
-
-        if (animProgress < 1) {
-          animFrame();
-        }
-      })
-    );
-  };
-
-  animFrame();
-};
 
 const SpendingStatistics = ({ transactions }) => {
   const [foodRatio, setFoodRatio] = useState(0);
